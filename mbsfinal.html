@@ -5,13 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>MBS Connect</title>
 
- 
-  
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#28313F">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/icons/favicon.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MBS Connect">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Zilla+Slab:wght@400;600;700&display=swap');
 
-
-  
 :root{
   --ink:#28313F;
   --ink-800:#1B222C;
@@ -33,8 +40,6 @@
 }
 
 *{box-sizing:border-box;}
-
-
 html,body{margin:0;padding:0;}
 body{
   background:var(--bg);
@@ -45,27 +50,12 @@ body{
 }
 
 h1,h2,h3,.display{
-
-
-
-
   font-family:'Inter',sans-serif;
-
-
   font-weight:600;
-
-
   letter-spacing:-0.015em;
-
-
   margin:0;
-
 }
 .mono{font-family:'Zilla Slab',serif;}
-
-
-
-
 a{color:inherit;}
 button{font-family:'Inter',sans-serif;cursor:pointer;}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
@@ -73,14 +63,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
 }
 
-/* ---------- Layout shell ---------- */
-
-
 .app{max-width:1180px;margin:0 auto;padding:0 clamp(14px,4vw,24px) 48px;}
 
 .topbar{
-
-
   display:flex;align-items:center;justify-content:space-between;
   padding:22px 0 20px;
   gap:20px;flex-wrap:wrap;
@@ -131,15 +116,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 }
 .user-pill-logout:hover{background:var(--flag);color:#fff;}
 
-
-
-/* ---------- Mobile hamburger trigger (hidden on desktop) ---------- */
-
-
-
 .hamburger-btn{
-
-
   display:none;
   width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);
   background:var(--surface);box-shadow:var(--shadow);
@@ -155,22 +132,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .hamburger-btn.open span:nth-child(2){opacity:0;}
 .hamburger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
-/* ---------- Mobile drawer menu (signature-consistent, modern) ---------- */
-
-
 .mobile-menu-overlay{
-
-
   position:fixed;inset:0;background:rgba(27,34,44,0.55);
   display:none;z-index:60;backdrop-filter:blur(2px);
-
-  
 }
 .mobile-menu-overlay.open{display:block;}
-
-
 .mobile-menu{
-
   position:absolute;top:0;right:0;height:100%;width:min(84vw,360px);
   background:var(--surface);box-shadow:-16px 0 40px -12px rgba(27,34,44,0.35);
   display:flex;flex-direction:column;
@@ -178,7 +145,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   transform:translateX(100%);transition:transform .32s cubic-bezier(.32,.72,0,1);
   overflow-y:auto;
 }
-
 .mobile-menu-overlay.open .mobile-menu{transform:translateX(0);}
 
 .mobile-menu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
@@ -207,21 +173,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .mobile-menu-auth .user-pill{width:100%;justify-content:space-between;padding:10px 8px 10px 16px;}
 .mobile-menu .cta-ask{width:100%;margin-top:14px;min-height:48px;}
 
-/* ---------- Departure board (signature element) ---------- */
-
-
 .board-wrap{
-
-
   margin:26px 0 40px;
   background-color:var(--surface);
   border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
-
-
 }
 .board-head{
-
-
   background:var(--ink-800);
   color:white;
   font-family:'Inter',sans-serif;font-size:14px;letter-spacing:.14em;
@@ -229,15 +186,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   padding:17px 20px;display:flex;
   justify-content:space-between;
   border-bottom:1px solid rgba(255,255,255,0.1);
-
-
 }
 .board{
   background:var(--surface);
   padding:6px 0;
 }
 .board-row{
-
   display:grid;grid-template-columns:110px 1fr 150px 40px;
   align-items:center;gap:12px;
   padding:13px 20px;
@@ -258,9 +212,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   font-family:'Inter',sans-serif;
 }
 .board-name{
-
   color:var(--ink);
-
   font-family:'Inter',sans-serif;
   font-weight:600;font-size:13.5px;
 }
@@ -269,22 +221,17 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   font-family:'Inter',sans-serif;
 }
 
-/* ---------- Views ---------- */
-
-
 .view{display:none;}
 .view.active{display:block;animation:fadein .3s ease both;}
 @keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
 .hero{
-
   display:flex;justify-content:space-between;align-items:flex-end;
   gap:24px;flex-wrap:wrap;margin-bottom:32px;
 }
 .hero-greeting{font-size:36px;max-width:560px;line-height:1.14;color:var(--ink);}
 
 .hero-date{
-
   padding-bottom: 20px;
   padding-top: 20px;
   font-family:'Inter',sans-serif;color:var(--accent);font-size:14px;
@@ -319,7 +266,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 .section-block{margin-bottom:48px;}
 
-/* News */
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .news-card{
   background:var(--surface);border-radius:var(--radius);
@@ -357,7 +303,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 }
 .card-delete:hover{background:var(--flag);color:#fff;}
 
-/* Events */
 .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .event-card{
   background:var(--surface);border-radius:var(--radius);
@@ -383,22 +328,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 }
 .event-btn:hover{background:var(--accent);color:#fff;}
 .event-btn.joined{background:var(--ink);color:#fff;border-color:var(--ink);}
-.event-roster-btn{
-  margin-top:4px;align-self:flex-start;border:none;background:none;color:var(--ink-soft);
-  font-size:11.5px;font-weight:700;padding:2px 0;text-decoration:underline;text-underline-offset:2px;
-  transition:color .15s;
-}
-.event-roster-btn:hover{color:var(--accent-dark);}
-.roster-row{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
-  padding:11px 13px;background:var(--bg);border-radius:10px;font-size:13px;
-}
-.roster-row .who{font-weight:700;color:var(--ink);}
-.roster-row .formation{color:var(--ink-soft);font-size:12px;margin-top:2px;}
-.roster-row .email{color:var(--ink-soft);font-size:12px;text-align:right;white-space:nowrap;}
-.roster-list{display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;margin-bottom:6px;}
-
-/* Forum */
 
 .forum-toolbar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
 .filter-row{display:flex;gap:7px;flex-wrap:wrap;}
@@ -454,7 +383,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .reply .who{font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-dark);display:flex;align-items:center;gap:6px;margin-bottom:3px;}
 .reply .who .tag{padding:2px 8px;font-size:9px;}
 .reply-delete{
-
   flex-shrink:0;border:none;background:none;color:var(--ink-soft);font-size:11.5px;font-weight:600;
   padding:3px 8px;border-radius:6px;white-space:nowrap;transition:.15s;
 }
@@ -469,7 +397,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 }
 .reply-form button:hover{background:var(--accent);}
 
-/* Modal */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(27,34,44,0.6);display:none;
   align-items:center;justify-content:center;padding:20px;z-index:50;
@@ -501,15 +428,8 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   border:1.5px dashed var(--line);border-radius:var(--radius);padding:28px;text-align:center;color:var(--ink-soft);font-size:13.5px;background:var(--surface);
 }
 
-/* Event signup modal specifics */
-
-
 .signup-event-box{
-
-
   background:var(--bg);border-radius:12px;padding:13px 15px;margin-bottom:18px;
-
-
 }
 .signup-event-box .se-title{font-weight:700;font-size:14px;color:var(--ink);}
 .signup-event-box .se-meta{font-size:12px;color:var(--ink-soft);margin-top:3px;}
@@ -521,7 +441,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .form-msg.success{background:var(--ok-soft);color:var(--ok);}
 .form-msg.error{background:#FBE1E2;color:var(--flag);}
 
-/* ---------- Auth gate (login / signup landing) ---------- */
 .auth-gate{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   padding:24px;
@@ -550,8 +469,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .role-card.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark);}
 .auth-panel{display:flex;flex-direction:column;}
 .auth-foot-note{font-size:11.5px;color:var(--ink-soft);margin-top:14px;line-height:1.5;text-align:center;}
-.link-btn{border:none;background:none;color:var(--accent-dark);font-weight:700;font-size:12.5px;padding:0;}
-.link-btn:hover{color:var(--accent);text-decoration:underline;}
 
 @media(max-width:860px){
   .news-grid,.events-grid,.stat-row{grid-template-columns:1fr 1fr;}
@@ -559,95 +476,48 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   .board-place,.board-count{display:none;}
 }
 
-/* ---------- Phone adaptation ---------- */
-
-
 @media(max-width:700px){
   body{font-size:15px;}
-
   .news-grid,.events-grid,.stat-row{grid-template-columns:1fr;}
-
-  /* Header: brand + hamburger only, nav/auth/cta move into the drawer */
-
-
   .topbar{padding:16px 0 14px;gap:12px;}
   .brand-name{font-size:18px;}
   .topbar-right .nav,
   .topbar-right .auth-area,
   .topbar-right .cta-ask{display:none;}
   .hamburger-btn{display:flex;}
-
   .hero{margin-bottom:22px;}
   .hero-greeting{font-size:24px;line-height:1.22;}
   .hero-date{padding-top:6px;padding-bottom:12px;font-size:13px;}
-
-
-
-  /* Departure board: keep only the essentials legible */
   .board-wrap{margin:18px 0 28px;border-radius:14px;}
-
-
   .board-head{padding:14px 16px;font-size:12px;}
   .board-row{padding:12px 16px;grid-template-columns:64px 1fr;gap:8px;font-size:12.5px;}
   .board-name{font-size:12.5px;}
-
   .stat-row{gap:10px;margin-bottom:32px;}
   .stat-card{padding:16px 18px;}
   .stat-num{font-size:28px;}
-
   .section-block{margin-bottom:36px;}
   .section-head{margin-bottom:14px;}
   .section-head h2{font-size:18px;}
-
-
   .news-grid,.events-grid{gap:12px;}
-  
   .news-card{padding:16px;}
   .event-body{padding:16px;}
-
-
-  /* Forum: let the thread header wrap into two clean rows */
-
-
   .forum-toolbar{margin-bottom:16px;}
-
-
   .filter-row{width:100%;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
-
-  
   .filter-chip{flex-shrink:0;}
-
-
-
   .thread-head{
-
     grid-template-columns:44px 1fr;
-
-
     grid-template-areas:"vote main" "actions actions";
-
-
     padding:14px 16px;row-gap:10px;
   }
   .upvote{grid-area:vote;}
   .thread-main{grid-area:main;}
   .thread-actions{grid-area:actions;justify-content:flex-end;flex-wrap:wrap;}
-
   .thread-body{padding:14px 16px 16px;}
-
   .reply{flex-wrap:wrap;}
-
   .reply-form{flex-direction:column;}
   .reply-form button{width:100%;min-height:44px;}
-
-  /* Modals become a bottom sheet: easier to reach with a thumb */
-
-
   .modal-overlay{align-items:flex-end;padding:0;}
-
-
   .modal{
-
     max-width:100%;width:100%;border-radius:20px 20px 0 0;
     padding:20px 18px calc(20px + env(safe-area-inset-bottom));
     max-height:92vh;
@@ -667,12 +537,8 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <body>
 
 <!-- ================= AUTH GATE ================= -->
-
-
 <div class="auth-gate" id="authGate">
-
   <div class="auth-card">
-
     <div class="brand-name">MBS <span>Connect</span></div>
     <p class="auth-sub">Connecte-toi ou crée un compte pour accéder à la plateforme.</p>
 
@@ -682,27 +548,44 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
 
     <!-- LOGIN PANEL -->
-
-
     <div class="auth-panel" id="authPanelLogin">
-
       <div class="form-msg" id="gateLoginMsg"></div>
-
       <div class="field">
-
         <label for="gateLoginEmail">Email</label>
-
         <input id="gateLoginEmail" type="email" placeholder="ex. camille.dubois@mail.com">
       </div>
-
       <div class="field">
-
         <label for="gateLoginPassword">Mot de passe</label>
         <input id="gateLoginPassword" type="password" placeholder="••••••••">
       </div>
       <button class="btn-primary" id="gateLoginBtn" style="width:100%">Se connecter</button>
-      <p class="auth-foot-note"><button type="button" class="link-btn" id="forgotPasswordBtn">Mot de passe oublié ?</button></p>
-      <p class="auth-foot-note">Pas encore de compte ? Clique sur « Créer un compte » ci-dessus.</p>
+      <p class="auth-foot-note">
+        <a href="#" id="forgotPasswordLink" style="color:var(--accent-dark);font-weight:700;text-decoration:none;">Mot de passe oublié ?</a><br>
+        Pas encore de compte ? Clique sur « Créer un compte » ci-dessus.
+      </p>
+    </div>
+
+    <!-- FORGOT PASSWORD: request panel -->
+    <div class="auth-panel" id="authPanelForgot" style="display:none">
+      <p class="auth-sub" style="margin-bottom:16px;">Indique l'email utilisé à l'inscription : si un compte existe, tu recevras un lien pour choisir un nouveau mot de passe.</p>
+      <div class="form-msg" id="forgotMsg"></div>
+      <div class="field">
+        <label for="forgotEmail">Email</label>
+        <input id="forgotEmail" type="email" placeholder="ex. camille.dubois@mail.com">
+      </div>
+      <button class="btn-primary" id="forgotSubmitBtn" style="width:100%">Envoyer le lien</button>
+      <p class="auth-foot-note"><a href="#" id="backToLoginLink" style="color:var(--accent-dark);font-weight:700;text-decoration:none;">← Retour à la connexion</a></p>
+    </div>
+
+    <!-- FORGOT PASSWORD: reset panel (arrivée via le lien reçu par email, ?reset=TOKEN) -->
+    <div class="auth-panel" id="authPanelReset" style="display:none">
+      <p class="auth-sub" style="margin-bottom:16px;">Choisis un nouveau mot de passe.</p>
+      <div class="form-msg" id="resetMsg"></div>
+      <div class="field">
+        <label for="resetPassword">Nouveau mot de passe</label>
+        <input id="resetPassword" type="password" placeholder="6 caractères minimum">
+      </div>
+      <button class="btn-primary" id="resetSubmitBtn" style="width:100%">Valider le nouveau mot de passe</button>
     </div>
 
     <!-- SIGNUP PANEL -->
@@ -734,34 +617,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
       </div>
       <button class="btn-primary" id="gateSignupBtn" style="width:100%">Créer mon compte</button>
     </div>
-
-    <!-- RESET PASSWORD PANEL -->
-    <div class="auth-panel" id="authPanelReset" style="display:none">
-      <p class="auth-sub" style="margin:0 0 18px;">Ce site fonctionne sans serveur d'email : indique ton email, et si un compte correspond, tu pourras définir un nouveau mot de passe directement ici, sur cet appareil.</p>
-      <div class="form-msg" id="gateResetMsg"></div>
-
-      <div id="resetStep1">
-        <div class="field">
-          <label for="resetEmail">Email</label>
-          <input id="resetEmail" type="email" placeholder="ex. camille.dubois@mail.com">
-        </div>
-        <button class="btn-primary" id="resetFindBtn" style="width:100%">Continuer</button>
-      </div>
-
-      <div id="resetStep2" style="display:none">
-        <div class="field">
-          <label for="resetPassword">Nouveau mot de passe</label>
-          <input id="resetPassword" type="password" placeholder="6 caractères minimum">
-        </div>
-        <div class="field">
-          <label for="resetPasswordConfirm">Confirmer le mot de passe</label>
-          <input id="resetPasswordConfirm" type="password" placeholder="6 caractères minimum">
-        </div>
-        <button class="btn-primary" id="resetConfirmBtn" style="width:100%">Réinitialiser le mot de passe</button>
-      </div>
-
-      <p class="auth-foot-note"><button type="button" class="link-btn" id="backToLoginBtn">← Retour à la connexion</button></p>
-    </div>
   </div>
 </div>
 
@@ -778,7 +633,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
         <button data-view="actus">Actualités</button>
         <button data-view="evenements">Événements</button>
         <button data-view="forum">Espace discussion</button>
-        <button data-view="annonces">Annonces importantes</button>
         <button data-view="espace">Mon espace</button>
       </nav>
 
@@ -793,10 +647,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 
   <!-- ACCUEIL -->
-
-
   <section class="view active" id="view-accueil">
-
     <div class="hero">
       <div>
         <div class="hero-date" id="heroDate"></div>
@@ -804,31 +655,15 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
       </div>
     </div>
 
-    <!-- Annonces équipe MBS (masqué automatiquement s'il n'y en a aucune) -->
-    <div class="section-block" id="announcementsSection" style="display:none;">
-      <div class="section-head"><h2>📢 Annonces de l'équipe MBS</h2></div>
-      <div class="news-grid" id="announcementsList"></div>
-    </div>
-
-    <!-- Departure-board signature element -->
-
-
     <div class="board-wrap">
-
       <div class="board-head">
-
         <span>Prochainement</span>
-
-
         <span id="boardClock"></span>
-
-
       </div>
       <div class="board" id="board"></div>
     </div>
 
     <div class="stat-row">
-
       <div class="stat-card"><div class="stat-num" id="statNews">0</div><div class="stat-label">Actualités cette semaine</div></div>
       <div class="stat-card"><div class="stat-num" id="statEvents">0</div><div class="stat-label">Événements à venir</div></div>
       <div class="stat-card"><div class="stat-num" id="statThreads">0</div><div class="stat-label">Discussions actives</div></div>
@@ -851,11 +686,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
 
     <div class="section-block">
-
-
       <div class="section-head">
-
-
         <h2>Discussions récentes</h2>
         <button class="see-all" data-goto="forum">Tout voir →</button>
       </div>
@@ -864,12 +695,8 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </section>
 
   <!-- ACTUS -->
-
-
   <section class="view" id="view-actus">
-  
     <div class="section-head">
-
       <h2>Toutes les actualités</h2>
       <div class="head-actions">
         <button class="btn-admin" id="addNewsBtn" style="display:none">+ Ajouter une actu</button>
@@ -879,8 +706,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </section>
 
   <!-- EVENEMENTS -->
-
-
   <section class="view" id="view-evenements">
     <div class="section-head">
       <h2>Tous les événements</h2>
@@ -892,25 +717,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </section>
 
   <!-- FORUM -->
-
-
   <section class="view" id="view-forum">
     <div class="section-head"><h2>Forum étudiant</h2></div>
     <div class="forum-toolbar">
       <div class="filter-row" id="filterRow"></div>
     </div>
     <div id="threadList"></div>
-  </section>
-
-  <!-- ANNONCES IMPORTANTES -->
-  <section class="view" id="view-annonces">
-    <div class="section-head">
-      <h2>Annonces importantes</h2>
-      <div class="head-actions">
-        <button class="btn-admin" id="addAnnouncementBtn" style="display:none">+ Publier une annonce</button>
-      </div>
-    </div>
-    <div class="news-grid" id="announcementsAll"></div>
   </section>
 
   <!-- MON ESPACE -->
@@ -930,13 +742,11 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
 
     <div class="mobile-menu-section-label">Navigation</div>
-
     <nav class="mobile-nav" id="mobileNav">
       <button data-view="accueil" class="active">Accueil <span class="arrow-i">→</span></button>
       <button data-view="actus">Actualités <span class="arrow-i">→</span></button>
       <button data-view="evenements">Événements <span class="arrow-i">→</span></button>
       <button data-view="forum">Espace discussion <span class="arrow-i">→</span></button>
-      <button data-view="annonces">Annonces importantes <span class="arrow-i">→</span></button>
       <button data-view="espace">Mon espace <span class="arrow-i">→</span></button>
     </nav>
 
@@ -948,15 +758,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </div>
 
 <!-- Modal: ask a question -->
-
-
 <div class="modal-overlay" id="askOverlay">
   <div class="modal">
-
-
     <h2>Poser une question</h2>
-
-
     <p class="sub">Elle apparaîtra dans le fil du forum, visible par tous les étudiants.</p>
     <p class="sub" id="askAsUser" style="display:none;color:var(--accent-dark);font-weight:600;"></p>
 
@@ -996,18 +800,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </div>
 
 <!-- Modal: event signup (sends to Google Sheet) -->
-
 <div class="modal-overlay" id="signupOverlay">
   <div class="modal">
-   
     <h2>Je m'inscris</h2>
-
-
     <p class="sub">Ton inscription est enregistrée automatiquement dans le suivi de l'événement.</p>
 
     <div class="signup-event-box">
-
-
       <div class="se-title" id="signupEventTitle"></div>
       <div class="se-meta" id="signupEventMeta"></div>
     </div>
@@ -1015,12 +813,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="form-msg" id="signupMsg"></div>
 
     <div class="field">
-
       <label for="signupPrenom">Prénom</label>
       <input id="signupPrenom" type="text" placeholder="ex. Camille">
     </div>
     <div class="field">
-
       <label for="signupNom">Nom</label>
       <input id="signupNom" type="text" placeholder="ex. Dubois">
     </div>
@@ -1039,46 +835,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 </div>
 
-<!-- Modal: roster (équipe MBS only) — voir qui s'est inscrit à un événement -->
-<div class="modal-overlay" id="rosterOverlay">
-  <div class="modal">
-    <h2>Liste des inscrits</h2>
-    <p class="sub" id="rosterEventTitle"></p>
-    <div class="roster-list" id="rosterList"></div>
-    <div class="modal-actions">
-      <button class="btn-secondary" id="closeRoster">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal: add announcement (équipe MBS only) -->
-<div class="modal-overlay" id="announcementOverlay">
-  <div class="modal">
-    <h2>Ajouter une annonce</h2>
-    <p class="sub">Elle apparaîtra dans l'onglet "Annonces importantes", et en haut de l'accueil si elle est marquée urgente.</p>
-    <div class="form-msg" id="announcementMsg"></div>
-    <div class="field">
-      <label for="announcementTitle">Titre</label>
-      <input id="announcementTitle" type="text" placeholder="ex. Maintenance informatique ce soir">
-    </div>
-    <div class="field">
-      <label for="announcementText">Message</label>
-      <textarea id="announcementText" placeholder="Détails de l'annonce..."></textarea>
-    </div>
-    <div class="field" style="display:flex;align-items:center;gap:10px;">
-      <input id="announcementUrgent" type="checkbox" style="width:auto;">
-      <label for="announcementUrgent" style="margin:0;text-transform:none;letter-spacing:normal;font-weight:600;font-size:13px;color:var(--ink);">🚨 Marquer comme urgente (mise en avant sur l'accueil)</label>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-secondary" id="cancelAnnouncement">Annuler</button>
-      <button class="btn-primary" id="submitAnnouncement">Publier</button>
-    </div>
-  </div>
-</div>
-
 <!-- Modal: add news (équipe MBS only) -->
-
-
 <div class="modal-overlay" id="newsOverlay">
   <div class="modal">
     <h2>Ajouter une actualité</h2>
@@ -1113,8 +870,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 <!-- Modal: add event (équipe MBS only) -->
 <div class="modal-overlay" id="eventOverlay">
-
-
   <div class="modal">
     <h2>Ajouter un événement</h2>
     <p class="sub">Il apparaîtra dans le tableau des prochains événements.</p>
@@ -1144,7 +899,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 <script>
 /* =========================================================================
-   INTÉGRATION GOOGLE SHEET
+   INTÉGRATION GOOGLE SHEET (uniquement pour les inscriptions aux événements)
    1. Crée un Google Sheet.
    2. Dans le Sheet : Extensions > Apps Script, colle ce code :
 
@@ -1163,38 +918,61 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
       - Exécuter en tant que : Moi
       - Qui a accès : Tout le monde
    4. Colle l'URL du déploiement ci-dessous, à la place de "PASTE_YOUR_APPS_SCRIPT_URL_HERE".
-   Tant que ce n'est pas configuré, les inscriptions restent fonctionnelles
-   dans la page mais ne sont pas envoyées vers un Sheet.
    ========================================================================= */
 const GOOGLE_SHEET_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
 
 /* =========================================================================
-   COMPTES & CONNEXION
-   Il n'y a pas de serveur derrière ce site : les comptes sont stockés dans
-   le navigateur (localStorage). C'est pratique pour une petite plateforme
-   étudiante mais ce n'est PAS un stockage sécurisé (les mots de passe ne
-   sont pas chiffrés sérieusement, juste légèrement encodés). Ne réutilise
-   pas de mot de passe sensible ici, et si tu veux un vrai niveau de
-   sécurité un jour, il faudra un backend avec une vraie base de données.
-
+   DONNÉES PARTAGÉES (Netlify Blobs)
+   Actus, événements, forum et comptes vivent côté serveur via /api/store.
+   Tout le monde voit les mêmes données, sur n'importe quel appareil.
    ========================================================================= */
 
-function obfuscate(pw){
+const API = '/api/store';
 
+async function apiGet(key, fallback){
+  try{
+    const res = await fetch(`${API}?key=${encodeURIComponent(key)}`);
+    if(!res.ok) throw new Error('bad response ' + res.status);
+    const data = await res.json();
+    return (data === null || data === undefined) ? fallback : data;
+  } catch(e){
+    console.error('apiGet failed', key, e);
+    return fallback;
+  }
+}
+
+async function apiSet(key, value){
+  try{
+    const res = await fetch(API, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({key, value})
+    });
+    if(!res.ok) throw new Error('bad response ' + res.status);
+    return true;
+  } catch(e){
+    console.error('apiSet failed', key, e);
+    return false;
+  }
+}
+
+function obfuscate(pw){
   try { return btoa(unescape(encodeURIComponent(pw))); }
   catch(e){ return pw; }
 }
 
-function loadAccounts(){
-  try { return JSON.parse(localStorage.getItem('mbs_accounts') || '[]'); }
-  catch(e){ return []; }
+let accountsCache = [];
+
+async function refreshAccounts(){
+  accountsCache = await apiGet('accounts', []);
+  return accountsCache;
 }
-function saveAccounts(list){
-  localStorage.setItem('mbs_accounts', JSON.stringify(list));
+async function persistAccounts(){
+  await apiSet('accounts', accountsCache);
 }
 function findAccountByEmail(email){
   const e = (email || '').trim().toLowerCase();
-  return loadAccounts().find(a => a.email === e) || null;
+  return accountsCache.find(a => a.email === e) || null;
 }
 function saveSession(account){
   localStorage.setItem('mbs_session', account.id);
@@ -1202,10 +980,11 @@ function saveSession(account){
 function clearSession(){
   localStorage.removeItem('mbs_session');
 }
-function loadSessionAccount(){
+async function loadSessionAccount(){
   const id = localStorage.getItem('mbs_session');
   if(!id) return null;
-  return loadAccounts().find(a => a.id === id) || null;
+  await refreshAccounts();
+  return accountsCache.find(a => a.id === id) || null;
 }
 function publicUser(account){
   if(!account) return null;
@@ -1213,178 +992,41 @@ function publicUser(account){
   return rest;
 }
 
-/* =========================================================================
-   DONNÉES PARTAGÉES (actus, événements, forum)
-   Ces données sont maintenant stockées côté serveur via une fonction Netlify
-   (Netlify Blobs), afin que ce que publie un membre de l'équipe MBS ou un
-   étudiant soit visible par tout le monde, sur n'importe quel appareil —
-   et pas seulement dans le navigateur de la personne qui a écrit.
-   Voir netlify/functions/store.js pour le détail. Si l'appel réseau échoue
-   (site pas encore déployé sur Netlify, par ex.), on retombe simplement sur
-   les données par défaut ci-dessous, en local, pour que la page reste
-   utilisable.
-   ========================================================================= */
-const SHARED_API = "/api/store";
-let sharedDataReady = false;
-
-async function fetchShared(key){
-  try{
-    const res = await fetch(`${SHARED_API}?key=${encodeURIComponent(key)}`);
-    if(!res.ok) return null;
-    return await res.json();
-  } catch(e){
-    console.warn('fetchShared failed for', key, e);
-    return null;
-  }
-}
-
-async function saveShared(key, value){
-  try{
-    await fetch(`${SHARED_API}?key=${encodeURIComponent(key)}`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(value)
-    });
-  } catch(e){
-    console.warn('saveShared failed for', key, e);
-  }
-}
-
-// Sauvegarde le trio news/events/threads, avec un léger anti-rebond pour
-// éviter d'enchaîner trop d'appels réseau lors d'actions rapides successives.
-let saveSharedTimer = null;
-function persistShared(){
-  clearTimeout(saveSharedTimer);
-  saveSharedTimer = setTimeout(()=>{
-    saveShared('news', news);
-    saveShared('events', events);
-    saveShared('threads', threads);
-    saveShared('announcements', announcements);
-  }, 250);
-}
-
-// Charge les données partagées depuis le serveur au démarrage. Si rien n'a
-// encore été publié (première visite du site), on initialise le serveur
-// avec les valeurs par défaut ci-dessus pour que tout le monde parte des
-// mêmes données.
-async function loadSharedData(){
-  const [remoteNews, remoteEvents, remoteThreads, remoteAnnouncements] = await Promise.all([
-    fetchShared('news'), fetchShared('events'), fetchShared('threads'), fetchShared('announcements')
-  ]);
-  if(remoteNews !== null){ news = remoteNews; } else { saveShared('news', news); }
-  if(remoteEvents !== null){ events = remoteEvents; } else { saveShared('events', events); }
-  if(remoteThreads !== null){ threads = remoteThreads; } else { saveShared('threads', threads); }
-  if(remoteAnnouncements !== null){ announcements = remoteAnnouncements; } else { saveShared('announcements', announcements); }
-  sharedDataReady = true;
-}
-
-// Rafraîchit les données partagées en arrière-plan pour que les
-// publications d'un autre utilisateur (étudiant ↔ équipe MBS) apparaissent
-// sans avoir à recharger la page. On évite de le faire pendant qu'une
-// fenêtre modale est ouverte, pour ne pas perturber une saisie en cours.
-let anyModalOpen = ()=> !!document.querySelector('.modal-overlay.open');
-// Si la personne a le focus dans un champ texte (ex. une réponse en cours
-// de rédaction dans le forum, pas encore envoyée), on met en pause le
-// rafraîchissement automatique : sinon le re-rendu périodique effaçait ce
-// qui était en train d'être tapé, et il fallait recliquer dans le champ.
-function isUserTyping(){
-  const el = document.activeElement;
-  if(!el) return false;
-  const tag = el.tagName;
-  return tag === 'INPUT' || tag === 'TEXTAREA';
-}
-async function refreshSharedData(){
-  if(anyModalOpen() || isUserTyping()) return;
-  const [remoteNews, remoteEvents, remoteThreads, remoteAnnouncements] = await Promise.all([
-    fetchShared('news'), fetchShared('events'), fetchShared('threads'), fetchShared('announcements')
-  ]);
-  if(remoteNews !== null) news = remoteNews;
-  if(remoteEvents !== null) events = remoteEvents;
-  if(remoteThreads !== null) threads = remoteThreads;
-  if(remoteAnnouncements !== null) announcements = remoteAnnouncements;
-  renderHeader();
-  renderNews();
-  renderEvents();
-  renderThreads();
-  renderAnnouncements();
-  renderBoard();
-  if(document.getElementById('view-espace').classList.contains('active')) renderEspace();
-}
-
-/* ---------------- Data (valeurs par défaut, utilisées tant que rien
-   n'a encore été publié sur le serveur partagé) ---------------- */
-let news = [
-
-
+const DEFAULT_NEWS = [
   {cat:"Alternance", tagClass:"acad", title:"Cap sur l'alternance", date:"Tout savoir sur l'alternance", excerpt:"Avec l'alternance, chaque apprentissage devient une opportunité de construire son avenir professionnel.", link:"https://www.image2url.com/r2/default/documents/1783936132194-048f843f-4fbe-4fef-a25b-bcd6c422fb51.pdf"},
-
-
-
-
-
-
-
-
-
-
-
-
- 
 ];
 
-let events = [
-
-  {day:"15", month:"JUIL", title:"Job Dating", loc:"5 rue des Reculettes · 9h–17h", registrants:[]},
-
-
-  {day:"18", month:"JUIL", title:"Conférence : Social Entrepreneurship & Leadership", loc:"5 rue des Reculettes · 14h", registrants:[]},
-
-  {day:"22", month:"JUIL", title:"Atelier CV & LinkedIn", loc:"11h", registrants:[]}
+const DEFAULT_EVENTS = [
+  {day:"15", month:"JUIL", title:"Job Dating", loc:"5 rue des Reculettes · 9h–17h"},
+  {day:"18", month:"JUIL", title:"Conférence : Social Entrepreneurship & Leadership", loc:"5 rue des Reculettes · 14h"},
+  {day:"22", month:"JUIL", title:"Atelier CV & LinkedIn", loc:"11h"}
 ];
 
-let threads = [
+const DEFAULT_THREADS = [];
 
-
-];
-
-// Annonces publiées par l'équipe MBS (maintenance informatique, alertes,
-// infos importantes...), affichées en haut de l'accueil pour tout le monde.
-let announcements = [
-
-
-];
-
-
+let news = [];
+let events = [];
+let threads = [];
 
 const catClass = {
-
   "Scolarité":"acad", "Vie de l'école":"vie", "Alternance/Stages":"intl", "Autres":"acad"
-
 };
 
 let activeFilter = "Toutes";
 let votedThreads = new Set();
 let votedReplies = new Set();
-let openThreadIdx = new Set(); // fils actuellement dépliés dans le forum — persiste entre les re-rendus
 let currentUser = null;
 let pendingEventIdx = null;
-let resetTargetAccountId = null;
 
-// Identifiant stable d'un utilisateur pour les droits de suppression : on
-// utilise l'email (unique, ne change pas si le prénom/nom est modifié dans
-// les paramètres du profil) plutôt que le nom affiché — deux personnes
-// pouvant porter le même nom, un identifiant basé sur le nom permettrait
-// à tort de supprimer les questions/réponses de quelqu'un d'autre.
 function userKey(u){
   if(!u) return null;
-  const key = (u.email || '').trim().toLowerCase();
+  const key = `${u.prenom} ${u.nom}`.trim().toLowerCase();
   return key || null;
 }
 function isTeam(u){
   return !!(u && u.role === 'equipe');
 }
 
-/* ---------------- Helpers ---------------- */
 function newsCard(n, idx){
   const canManage = isTeam(currentUser);
   return `
@@ -1400,9 +1042,6 @@ function newsCard(n, idx){
 
 function eventCard(e, idx){
   const canManage = isTeam(currentUser);
-  const registrants = e.registrants || [];
-  const myEmail = currentUser ? (currentUser.email || '').toLowerCase() : null;
-  const isJoined = !!(myEmail && registrants.some(r => (r.email || '').toLowerCase() === myEmail));
   return `
   <div class="event-card">
     ${canManage ? `<button class="card-delete" data-del-event="${idx}" title="Supprimer">✕</button>` : ''}
@@ -1410,8 +1049,7 @@ function eventCard(e, idx){
     <div class="event-body">
       <h3>${e.title}</h3>
       <div class="event-loc">📍 ${e.loc}</div>
-      <button class="event-btn ${isJoined ? 'joined':''}" data-ev="${idx}">${isJoined ? 'Inscrit ✓' : 'Je participe'}</button>
-      ${canManage ? `<button class="event-roster-btn" data-roster="${idx}">👥 ${registrants.length} inscrit${registrants.length===1?'':'s'}</button>` : ''}
+      <button class="event-btn ${e.joined ? 'joined':''}" data-ev="${idx}">${e.joined ? 'Inscrit ✓' : 'Je participe'}</button>
     </div>
   </div>`;
 }
@@ -1435,26 +1073,15 @@ function replyRow(r, tIdx, ri){
 }
 
 function threadCard(t, idx){
-
   const voted = votedThreads.has(idx);
-
   const canDelete = currentUser && (t.ownerKey === userKey(currentUser) || isTeam(currentUser));
-
-  const isOpen = openThreadIdx.has(idx);
-
   return `
   <div class="thread" data-idx="${idx}">
-
     <div class="thread-head">
-
       <button class="upvote ${voted ? 'voted':''}" data-vote="${idx}">
-
         <span class="arrow">▲</span><span class="n">${t.votes}</span>
-
       </button>
-
       <div class="thread-main">
-
         <h3>${t.title}</h3>
         <div class="thread-meta">
           <span class="tag ${catClass[t.cat] || 'acad'}">${t.cat}</span>
@@ -1464,13 +1091,12 @@ function threadCard(t, idx){
         </div>
       </div>
       <div class="thread-actions">
-        <button class="thread-toggle" data-toggle="${idx}">${isOpen ? 'Masquer la discussion' : 'Voir la discussion'}</button>
+        <button class="thread-toggle">Voir la discussion</button>
         ${canDelete ? `<button class="thread-delete" data-del-question="${idx}">Supprimer</button>` : ''}
       </div>
     </div>
-    <div class="thread-body ${isOpen ? 'open' : ''}">
+    <div class="thread-body">
       ${t.replies.map((r, ri) => replyRow(r, idx, ri)).join('') || '<div class="empty">Aucune réponse pour le moment. Sois le premier à répondre.</div>'}
-
       <div class="reply-form">
         <input type="text" placeholder="Écrire une réponse...">
         <button data-reply="${idx}">Répondre</button>
@@ -1479,10 +1105,7 @@ function threadCard(t, idx){
   </div>`;
 }
 
-/* ---------------- Render ---------------- */
-
 function renderNews(){
-
   document.getElementById('newsPreview').innerHTML = news.slice(0,3).map((n)=>newsCard(n, news.indexOf(n))).join('');
   document.getElementById('newsAll').innerHTML = news.length ? news.map((n)=>newsCard(n, news.indexOf(n))).join('') : '<div class="empty">Aucune actualité pour le moment.</div>';
   document.getElementById('statNews').textContent = news.length;
@@ -1490,77 +1113,13 @@ function renderNews(){
   attachNewsButtons();
 }
 
-/* ---------------- Annonces équipe MBS ---------------- */
-function announcementCard(a, idx){
-  const canManage = isTeam(currentUser);
-  const dateStr = a.at ? new Date(a.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long'}) : '';
-  const urgent = !!a.urgent;
-  return `
-  <div class="news-card" style="border-left:4px solid ${urgent ? 'var(--flag)' : 'var(--accent)'};">
-    ${canManage ? `<button class="card-delete" data-del-announcement="${idx}" title="Supprimer">✕</button>` : ''}
-    <span class="tag" style="background:${urgent ? 'var(--flag)' : 'var(--accent)'};color:#fff;">${urgent ? '🚨 Annonce urgente' : '📢 Annonce équipe MBS'}</span>
-    <h3>${a.title}</h3>
-    <div class="news-excerpt">${a.text}</div>
-    ${dateStr ? `<div class="news-meta">${dateStr}</div>` : ''}
-  </div>`;
-}
-
-function renderAnnouncements(){
-  const section = document.getElementById('announcementsSection');
-  const list = document.getElementById('announcementsList');
-  const allList = document.getElementById('announcementsAll');
-  const addBtn = document.getElementById('addAnnouncementBtn');
-
-  // Les urgentes remontent toujours en premier, sans changer leur index
-  // réel dans le tableau `announcements` (nécessaire pour la suppression).
-  const sorted = announcements
-    .map((a, i) => ({a, i}))
-    .sort((x, y) => (y.a.urgent ? 1 : 0) - (x.a.urgent ? 1 : 0));
-
-  if(section && list){
-    const urgentOrRecent = sorted.slice(0, 3);
-    if(urgentOrRecent.length){
-      section.style.display = '';
-      list.innerHTML = urgentOrRecent.map(({a, i}) => announcementCard(a, i)).join('');
-    } else {
-      section.style.display = 'none';
-      list.innerHTML = '';
-    }
-  }
-
-  if(allList){
-    allList.innerHTML = sorted.length
-      ? sorted.map(({a, i}) => announcementCard(a, i)).join('')
-      : '<div class="empty">Aucune annonce publiée pour le moment.</div>';
-  }
-  if(addBtn){
-    addBtn.style.display = isTeam(currentUser) ? 'inline-flex' : 'none';
-  }
-
-  if(list) attachAnnouncementButtons(list);
-  if(allList) attachAnnouncementButtons(allList);
-}
-
-function attachAnnouncementButtons(scope){
-  const root = scope || document;
-  root.querySelectorAll('[data-del-announcement]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const idx = parseInt(btn.getAttribute('data-del-announcement'));
-      announcements.splice(idx, 1);
-      renderAnnouncements();
-      if(document.getElementById('view-espace').classList.contains('active')) renderEspace();
-      persistShared();
-    });
-  });
-}
-
 function attachNewsButtons(){
   document.querySelectorAll('[data-del-news]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const idx = parseInt(btn.getAttribute('data-del-news'));
       news.splice(idx, 1);
       renderNews();
-      persistShared();
+      await apiSet('news', news);
     });
   });
 }
@@ -1574,66 +1133,29 @@ function renderEvents(){
 }
 
 function attachEventButtons(){
-
-
   document.querySelectorAll('.event-btn').forEach(btn=>{
-
-
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const idx = parseInt(btn.getAttribute('data-ev'));
-      const e = events[idx];
-      e.registrants = e.registrants || [];
-      const myEmail = currentUser ? (currentUser.email || '').toLowerCase() : null;
-      const already = myEmail && e.registrants.some(r => (r.email || '').toLowerCase() === myEmail);
-      if(already){
-        // Se désinscrire ne nécessite pas de repasser par le formulaire
-        e.registrants = e.registrants.filter(r => (r.email || '').toLowerCase() !== myEmail);
+      if(btn.classList.contains('joined')){
+        events[idx].joined = false;
         renderEvents();
-        renderEspace();
-        persistShared();
+        await apiSet('events', events);
       } else {
         openSignupModal(idx);
       }
     });
   });
-  document.querySelectorAll('[data-roster]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      openRosterModal(parseInt(btn.getAttribute('data-roster')));
-    });
-  });
   document.querySelectorAll('[data-del-event]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const idx = parseInt(btn.getAttribute('data-del-event'));
       events.splice(idx, 1);
       renderEvents();
       renderBoard();
-      persistShared();
+      await apiSet('events', events);
     });
   });
 }
 
-/* ---------------- Roster modal (équipe MBS : voir qui s'est inscrit) ---------------- */
-const rosterOverlay = document.getElementById('rosterOverlay');
-function openRosterModal(idx){
-  const e = events[idx];
-  const registrants = e.registrants || [];
-  document.getElementById('rosterEventTitle').textContent = `${e.title} · ${e.day} ${e.month}`;
-  const list = document.getElementById('rosterList');
-  list.innerHTML = registrants.length ? registrants.map(r => `
-    <div class="roster-row">
-      <div>
-        <div class="who">${r.prenom} ${r.nom}</div>
-        <div class="formation">${r.formation || 'Formation non précisée'}</div>
-      </div>
-      <div class="email">${r.email}</div>
-    </div>
-  `).join('') : '<div class="empty">Personne ne s\'est encore inscrit(e) à cet événement.</div>';
-  rosterOverlay.classList.add('open');
-}
-document.getElementById('closeRoster').addEventListener('click', ()=> rosterOverlay.classList.remove('open'));
-rosterOverlay.addEventListener('click', (e)=>{ if(e.target===rosterOverlay) rosterOverlay.classList.remove('open'); });
-
-/* ---------------- Event signup modal ---------------- */
 const signupOverlay = document.getElementById('signupOverlay');
 
 function openSignupModal(idx){
@@ -1658,48 +1180,29 @@ function openSignupModal(idx){
 }
 
 function closeSignupModal(){
-
   signupOverlay.classList.remove('open');
   pendingEventIdx = null;
-
 }
 
 document.getElementById('cancelSignup').addEventListener('click', closeSignupModal);
-
 signupOverlay.addEventListener('click', (e)=>{ if(e.target===signupOverlay) closeSignupModal(); });
 
-
 document.getElementById('submitSignup').addEventListener('click', async ()=>{
-
   if(pendingEventIdx === null) return;
-
   const prenom = document.getElementById('signupPrenom').value.trim();
-
   const nom = document.getElementById('signupNom').value.trim();
-
   const email = document.getElementById('signupEmail').value.trim();
-
   const formation = document.getElementById('signupFormation').value.trim();
-
   const msg = document.getElementById('signupMsg');
-
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
   let hasError = false;
-
   [['signupPrenom', prenom], ['signupNom', nom], ['signupEmail', emailOk]].forEach(([id, ok])=>{
-
     document.getElementById(id).classList.toggle('field-error', !ok);
-
     if(!ok) hasError = true;
-
   });
   if(hasError){
-
     msg.className = 'form-msg error show';
-
     msg.textContent = 'Merci de renseigner un prénom, un nom et un email valide.';
-
     return;
   }
 
@@ -1710,42 +1213,25 @@ document.getElementById('submitSignup').addEventListener('click', async ()=>{
   msg.textContent = '';
 
   const e = events[pendingEventIdx];
-  e.registrants = e.registrants || [];
-  const alreadyRegistered = e.registrants.some(r => (r.email || '').toLowerCase() === email.toLowerCase());
-  const payload = {
-    evenement: e.title,
-    date: `${e.day} ${e.month}`,
-    lieu: e.loc,
-    prenom, nom, email, formation
-  };
-
+  const payload = { evenement: e.title, date: `${e.day} ${e.month}`, lieu: e.loc, prenom, nom, email, formation };
   const configured = GOOGLE_SHEET_ENDPOINT && GOOGLE_SHEET_ENDPOINT.startsWith('http');
 
   try{
     if(configured){
-
-      // mode 'no-cors' : Apps Script ne renvoie pas de réponse lisible depuis le navigateur,
-      // on considère l'envoi réussi si aucune erreur réseau n'est levée.
-
       await fetch(GOOGLE_SHEET_ENDPOINT, {
-
-        method:'POST',
-        mode:'no-cors',
+        method:'POST', mode:'no-cors',
         headers:{'Content-Type':'text/plain;charset=utf-8'},
         body: JSON.stringify(payload)
       });
-
     }
-    if(!alreadyRegistered){
-      e.registrants.push({prenom, nom, email, formation, ownerKey: userKey(currentUser), at: Date.now()});
-    }
+    e.joined = true;
     renderEvents();
     renderEspace();
-    persistShared();
+    await apiSet('events', events);
     msg.className = 'form-msg success show';
     msg.textContent = configured
       ? 'Inscription enregistrée et envoyée au Google Sheet ✓'
-      : 'Inscription enregistrée sur la page. Ajoute l\'URL Apps Script dans le code pour l\'envoyer aussi vers un Google Sheet.';
+      : "Inscription enregistrée sur la page. Ajoute l'URL Apps Script dans le code pour l'envoyer aussi vers un Google Sheet.";
     setTimeout(closeSignupModal, 1400);
   } catch(err){
     console.error(err);
@@ -1758,7 +1244,6 @@ document.getElementById('submitSignup').addEventListener('click', async ()=>{
 });
 
 function renderThreads(){
-
   const filtered = activeFilter === "Toutes" ? threads : threads.filter(t=>t.cat===activeFilter);
   const list = document.getElementById('threadList');
   list.innerHTML = filtered.length
@@ -1766,23 +1251,21 @@ function renderThreads(){
     : `<div class="empty">Aucune discussion dans cette catégorie pour l'instant. Sois le premier à poser une question.</div>`;
 
   document.getElementById('forumPreview').innerHTML = threads.slice(0,3).map((t)=>threadCard(t, threads.indexOf(t))).join('') || '<div class="empty">Aucune discussion pour le moment.</div>';
-
   document.getElementById('statThreads').textContent = threads.length;
   attachThreadHandlers();
 }
 
 function attachThreadHandlers(){
-
-  document.querySelectorAll('[data-toggle]').forEach(btn=>{
+  document.querySelectorAll('.thread-toggle').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      const idx = parseInt(btn.getAttribute('data-toggle'));
-      if(openThreadIdx.has(idx)) openThreadIdx.delete(idx);
-      else openThreadIdx.add(idx);
-      renderThreads();
+      const body = btn.closest('.thread').querySelector('.thread-body');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open');
+      btn.textContent = isOpen ? 'Voir la discussion' : 'Masquer la discussion';
     });
   });
   document.querySelectorAll('[data-vote]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const idx = parseInt(btn.getAttribute('data-vote'));
       if(votedThreads.has(idx)){
         votedThreads.delete(idx);
@@ -1792,11 +1275,12 @@ function attachThreadHandlers(){
         threads[idx].votes += 1;
       }
       renderThreads();
-      persistShared();
+      reopenThread(idx);
+      await apiSet('threads', threads);
     });
   });
   document.querySelectorAll('[data-vote-reply-idx]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const tIdx = parseInt(btn.getAttribute('data-vote-reply-thread'));
       const rIdx = parseInt(btn.getAttribute('data-vote-reply-idx'));
       const key = tIdx + '-' + rIdx;
@@ -1810,10 +1294,11 @@ function attachThreadHandlers(){
         reply.votes += 1;
       }
       renderThreads();
-      persistShared();
+      reopenThread(tIdx);
+      await apiSet('threads', threads);
     });
   });
-  function submitReply(btn){
+  async function submitReply(btn){
     const idx = parseInt(btn.getAttribute('data-reply'));
     const input = btn.closest('.reply-form').querySelector('input');
     const text = input.value.trim();
@@ -1821,7 +1306,8 @@ function attachThreadHandlers(){
     const who = currentUser ? (`${currentUser.prenom} ${currentUser.nom}`.trim() || "Vous") : "Vous";
     threads[idx].replies.push({who, text, votes:0, ownerKey: userKey(currentUser), role: currentUser ? currentUser.role : null});
     renderThreads();
-    persistShared();
+    reopenThread(idx);
+    await apiSet('threads', threads);
   }
   document.querySelectorAll('[data-reply]').forEach(btn=>{
     btn.addEventListener('click', ()=> submitReply(btn));
@@ -1835,36 +1321,35 @@ function attachThreadHandlers(){
     });
   });
   document.querySelectorAll('[data-del-reply]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const tIdx = parseInt(btn.getAttribute('data-del-thread'));
       const rIdx = parseInt(btn.getAttribute('data-del-reply'));
       threads[tIdx].replies.splice(rIdx, 1);
       renderThreads();
-      persistShared();
+      reopenThread(tIdx);
+      await apiSet('threads', threads);
     });
   });
-
   document.querySelectorAll('[data-del-question]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    btn.addEventListener('click', async ()=>{
       const idx = parseInt(btn.getAttribute('data-del-question'));
       threads.splice(idx, 1);
-      // Réaligne les fils actuellement dépliés puisque tous les index
-      // après celui supprimé se décalent d'un cran.
-      const shifted = new Set();
-      openThreadIdx.forEach(i=>{
-        if(i < idx) shifted.add(i);
-        else if(i > idx) shifted.add(i - 1);
-      });
-      openThreadIdx = shifted;
       renderThreads();
-      persistShared();
+      await apiSet('threads', threads);
     });
   });
 }
 
+function reopenThread(idx){
+  document.querySelectorAll('.thread[data-idx="'+idx+'"]').forEach(threadEl=>{
+    const body = threadEl.querySelector('.thread-body');
+    const toggle = threadEl.querySelector('.thread-toggle');
+    if(body){ body.classList.add('open'); }
+    if(toggle){ toggle.textContent = 'Masquer la discussion'; }
+  });
+}
 
 function renderFilters(){
-  
   const cats = ["Toutes","Scolarité","Vie de l'école","Alternance/Stages","Autres"];
   document.getElementById('filterRow').innerHTML = cats.map(c=>
     `<button class="filter-chip ${c===activeFilter?'active':''}" data-filter="${c}">${c}</button>`
@@ -1902,7 +1387,6 @@ function renderHeader(){
   }
 }
 
-/* ---------------- Mon espace ---------------- */
 function renderEspace(){
   const el = document.getElementById('espaceContent');
   const titleEl = document.getElementById('espaceTitle');
@@ -1925,40 +1409,20 @@ function renderEspace(){
           <div class="head-actions">
             <button class="btn-admin" id="espaceAddNewsBtn">+ Ajouter une actu</button>
             <button class="btn-admin" id="espaceAddEventBtn">+ Ajouter un événement</button>
-            <button class="btn-admin" id="espaceAddAnnouncementBtn">+ Ajouter une annonce</button>
           </div>
         </div>
         <div class="empty">
-          En tant que membre de l'équipe MBS, tu peux publier des actualités, ajouter des événements, publier des annonces et modérer le forum (supprimer n'importe quelle question ou réponse).
+          En tant que membre de l'équipe MBS, tu peux publier des actualités, ajouter des événements et modérer le forum (supprimer n'importe quelle question ou réponse).
         </div>
-      </div>
-      <div class="section-block">
-        <div class="section-head"><h2>Annonces publiées</h2></div>
-        <div class="news-grid" id="espaceAnnouncementsList">
-          ${announcements.length ? announcements.map((a)=>announcementCard(a, announcements.indexOf(a))).join('') : '<div class="empty">Aucune annonce publiée pour le moment.</div>'}
-        </div>
-      </div>
-      ${profileSettingsBlock()}`;
+      </div>`;
     document.getElementById('espaceAddNewsBtn').addEventListener('click', ()=> newsOverlay.classList.add('open'));
     document.getElementById('espaceAddEventBtn').addEventListener('click', ()=> eventOverlay.classList.add('open'));
-    document.getElementById('espaceAddAnnouncementBtn').addEventListener('click', ()=> announcementOverlay.classList.add('open'));
-    attachAnnouncementButtons(document.getElementById('espaceAnnouncementsList'));
-    attachProfileSettingsHandlers();
   } else {
     titleEl.textContent = 'Mon espace étudiant';
     const myKey = userKey(currentUser);
     const myThreads = threads.filter(t=>t.ownerKey===myKey);
-    const myEmail = (currentUser.email || '').toLowerCase();
-    const myEvents = events.filter(e => (e.registrants || []).some(r => (r.email || '').toLowerCase() === myEmail));
-    const urgentAnnouncements = announcements.filter(a => a.urgent);
+    const myEvents = events.filter(e=>e.joined);
     el.innerHTML = `
-      ${urgentAnnouncements.length ? `
-      <div class="section-block">
-        <div class="section-head"><h2>🚨 Annonces urgentes</h2></div>
-        <div class="news-grid">
-          ${urgentAnnouncements.map(a => announcementCard(a, announcements.indexOf(a))).join('')}
-        </div>
-      </div>` : ''}
       <div class="stat-row" style="margin-bottom:32px;">
         <div class="stat-card"><div class="stat-num">${myThreads.length}</div><div class="stat-label">Mes questions posées</div></div>
         <div class="stat-card"><div class="stat-num">${myEvents.length}</div><div class="stat-label">Événements rejoints</div></div>
@@ -1966,102 +1430,17 @@ function renderEspace(){
       </div>
       <div class="section-block">
         <div class="section-head"><h2>Mes questions</h2></div>
-        <p class="auth-foot-note" style="text-align:left;margin:-8px 0 14px;">Tu ne peux supprimer que tes propres questions et réponses.</p>
         ${myThreads.length ? `<div>${myThreads.map(t=>threadCard(t, threads.indexOf(t))).join('')}</div>` : "<div class=\"empty\">Tu n'as pas encore posé de question sur le forum.</div>"}
       </div>
       <div class="section-block">
         <div class="section-head"><h2>Mes événements</h2></div>
         ${myEvents.length ? `<div class="events-grid">${myEvents.map(e=>eventCard(e, events.indexOf(e))).join('')}</div>` : "<div class=\"empty\">Tu ne t'es inscrit(e) à aucun événement pour le moment.</div>"}
-      </div>
-      ${profileSettingsBlock()}`;
+      </div>`;
     attachThreadHandlers();
     attachEventButtons();
-    attachAnnouncementButtons(el);
-    attachProfileSettingsHandlers();
   }
 }
 
-/* ---------------- Paramètres du profil (étudiant & équipe) ---------------- */
-function profileSettingsBlock(){
-  const isStudent = !isTeam(currentUser);
-  return `
-    <div class="section-block">
-      <div class="section-head"><h2>Paramètres du profil</h2></div>
-      <div class="news-card" style="max-width:480px;">
-        <div class="form-msg" id="profileMsg"></div>
-        <div class="field">
-          <label for="profilePrenom">Prénom</label>
-          <input id="profilePrenom" type="text" value="${currentUser.prenom || ''}">
-        </div>
-        <div class="field">
-          <label for="profileNom">Nom</label>
-          <input id="profileNom" type="text" value="${currentUser.nom || ''}">
-        </div>
-        ${isStudent ? `
-        <div class="field">
-          <label for="profileFormation">Formation</label>
-          <input id="profileFormation" type="text" value="${currentUser.formation || ''}">
-        </div>` : ''}
-        <div class="field">
-          <label for="profileNewPassword">Nouveau mot de passe (optionnel)</label>
-          <input id="profileNewPassword" type="password" placeholder="Laisser vide pour ne pas changer">
-        </div>
-        <div class="field">
-          <label for="profileNewPasswordConfirm">Confirmer le nouveau mot de passe</label>
-          <input id="profileNewPasswordConfirm" type="password" placeholder="6 caractères minimum">
-        </div>
-        <button class="btn-primary" id="saveProfileBtn">Enregistrer les modifications</button>
-      </div>
-    </div>`;
-}
-
-function attachProfileSettingsHandlers(){
-  const btn = document.getElementById('saveProfileBtn');
-  if(!btn) return;
-  btn.addEventListener('click', ()=>{
-    const prenom = document.getElementById('profilePrenom').value.trim();
-    const nom = document.getElementById('profileNom').value.trim();
-    const formationField = document.getElementById('profileFormation');
-    const pw1 = document.getElementById('profileNewPassword').value;
-    const pw2 = document.getElementById('profileNewPasswordConfirm').value;
-
-    if(!prenom || !nom){
-      setGateMsg('profileMsg', 'error', 'Le prénom et le nom sont obligatoires.');
-      return;
-    }
-    if(pw1 || pw2){
-      if(pw1.length < 6){
-        setGateMsg('profileMsg', 'error', 'Le nouveau mot de passe doit contenir au moins 6 caractères.');
-        return;
-      }
-      if(pw1 !== pw2){
-        setGateMsg('profileMsg', 'error', 'Les deux mots de passe ne correspondent pas.');
-        return;
-      }
-    }
-
-    const accounts = loadAccounts();
-    const idx = accounts.findIndex(a => a.id === currentUser.id);
-    if(idx === -1){
-      setGateMsg('profileMsg', 'error', 'Une erreur est survenue, réessaie.');
-      return;
-    }
-    accounts[idx].prenom = prenom;
-    accounts[idx].nom = nom;
-    if(formationField) accounts[idx].formation = formationField.value.trim();
-    if(pw1) accounts[idx].password = obfuscate(pw1);
-    saveAccounts(accounts);
-    currentUser = publicUser(accounts[idx]);
-
-    setGateMsg('profileMsg', 'success', 'Profil mis à jour ✓');
-    renderAuthArea();
-    updateAskModalForAuth();
-    renderHeader();
-    renderEspace();
-  });
-}
-
-/* ---------------- Navigation ---------------- */
 function switchView(view){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-'+view).classList.add('active');
@@ -2085,7 +1464,6 @@ document.querySelectorAll('[data-goto]').forEach(btn=>{
   btn.addEventListener('click', ()=> switchView(btn.getAttribute('data-goto')));
 });
 
-/* ---------------- Mobile drawer menu ---------------- */
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
@@ -2111,8 +1489,6 @@ document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape'){
     closeMobileMenu();
     closeSignupModal();
-    rosterOverlay.classList.remove('open');
-    announcementOverlay.classList.remove('open');
     document.getElementById('newsOverlay').classList.remove('open');
     document.getElementById('eventOverlay').classList.remove('open');
   }
@@ -2123,7 +1499,6 @@ document.getElementById('mobileAskBtn').addEventListener('click', ()=>{
   document.getElementById('askOverlay').classList.add('open');
 });
 
-/* ---------------- Auth (session inside the app: logout, pill) ---------------- */
 function renderAuthArea(){
   if(!currentUser) return;
   const fullName = (`${currentUser.prenom} ${currentUser.nom}`.trim()) || "Étudiant·e";
@@ -2159,22 +1534,99 @@ function updateAskCtaVisibility(){
 function logout(){
   clearSession();
   currentUser = null;
+  if(pollTimer) clearInterval(pollTimer);
   document.getElementById('mainApp').style.display = 'none';
   document.getElementById('authGate').style.display = 'flex';
   showAuthTab('login');
 }
 
-/* ---------------- Auth gate: tabs, role select ---------------- */
 function showAuthTab(tab){
-  document.getElementById('authTabs').style.display = 'flex';
-  document.getElementById('authPanelReset').style.display = 'none';
   document.querySelectorAll('#authTabs button').forEach(b=>b.classList.toggle('active', b.getAttribute('data-tab')===tab));
+  document.getElementById('authTabs').style.display = (tab === 'login' || tab === 'signup') ? 'flex' : 'none';
   document.getElementById('authPanelLogin').style.display = tab === 'login' ? 'flex' : 'none';
   document.getElementById('authPanelSignup').style.display = tab === 'signup' ? 'flex' : 'none';
+  document.getElementById('authPanelForgot').style.display = tab === 'forgot' ? 'flex' : 'none';
+  document.getElementById('authPanelReset').style.display = tab === 'reset' ? 'flex' : 'none';
 }
 document.getElementById('authTabs').addEventListener('click', (e)=>{
   const btn = e.target.closest('button[data-tab]');
   if(btn) showAuthTab(btn.getAttribute('data-tab'));
+});
+
+document.getElementById('forgotPasswordLink').addEventListener('click', (e)=>{
+  e.preventDefault();
+  document.getElementById('forgotEmail').value = document.getElementById('gateLoginEmail').value || '';
+  clearGateMsg('forgotMsg');
+  showAuthTab('forgot');
+});
+document.getElementById('backToLoginLink').addEventListener('click', (e)=>{
+  e.preventDefault();
+  showAuthTab('login');
+});
+
+document.getElementById('forgotSubmitBtn').addEventListener('click', async ()=>{
+  const email = document.getElementById('forgotEmail').value.trim();
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!emailOk){
+    setGateMsg('forgotMsg', 'error', 'Merci de renseigner un email valide.');
+    return;
+  }
+  const btn = document.getElementById('forgotSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi...';
+  try{
+    await fetch('/api/reset-request', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    setGateMsg('forgotMsg', 'success', "Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé. Vérifie ta boîte mail (et tes spams).");
+  } catch(err){
+    console.error(err);
+    setGateMsg('forgotMsg', 'error', "Une erreur est survenue. Réessaie dans un instant.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Envoyer le lien';
+  }
+});
+
+document.getElementById('resetSubmitBtn').addEventListener('click', async ()=>{
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('reset');
+  const password = document.getElementById('resetPassword').value;
+  if(!token){
+    setGateMsg('resetMsg', 'error', 'Lien invalide.');
+    return;
+  }
+  if(password.length < 6){
+    setGateMsg('resetMsg', 'error', 'Le mot de passe doit faire au moins 6 caractères.');
+    return;
+  }
+  const btn = document.getElementById('resetSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Validation...';
+  try{
+    const res = await fetch('/api/reset-confirm', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({token, password})
+    });
+    const data = await res.json();
+    if(!res.ok){
+      setGateMsg('resetMsg', 'error', data.error || 'Une erreur est survenue.');
+      btn.disabled = false;
+      btn.textContent = 'Valider le nouveau mot de passe';
+      return;
+    }
+    setGateMsg('resetMsg', 'success', 'Mot de passe mis à jour ! Tu peux te connecter.');
+    history.replaceState(null, '', window.location.pathname);
+    setTimeout(()=> showAuthTab('login'), 1400);
+  } catch(err){
+    console.error(err);
+    setGateMsg('resetMsg', 'error', "Une erreur est survenue. Réessaie dans un instant.");
+    btn.disabled = false;
+    btn.textContent = 'Valider le nouveau mot de passe';
+  }
 });
 
 let selectedRole = 'etudiant';
@@ -2197,21 +1649,26 @@ function clearGateMsg(id){
   el.textContent = '';
 }
 
-document.getElementById('gateSignupBtn').addEventListener('click', ()=>{
+document.getElementById('gateSignupBtn').addEventListener('click', async ()=>{
   const prenom = document.getElementById('gatePrenom').value.trim();
   const nom = document.getElementById('gateNom').value.trim();
   const email = document.getElementById('gateEmail').value.trim().toLowerCase();
   const password = document.getElementById('gatePassword').value;
   const formation = document.getElementById('gateFormation').value.trim();
-
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   if(!prenom || !nom || !emailOk || password.length < 6){
     setGateMsg('gateSignupMsg', 'error', "Merci de renseigner prénom, nom, un email valide et un mot de passe d'au moins 6 caractères.");
     return;
   }
+
+  const btn = document.getElementById('gateSignupBtn');
+  btn.disabled = true;
+  await refreshAccounts();
+
   if(findAccountByEmail(email)){
     setGateMsg('gateSignupMsg', 'error', 'Un compte existe déjà avec cet email. Connecte-toi plutôt.');
+    btn.disabled = false;
     return;
   }
 
@@ -2223,154 +1680,101 @@ document.getElementById('gateSignupBtn').addEventListener('click', ()=>{
     role: selectedRole,
     createdAt: Date.now()
   };
-  const accounts = loadAccounts();
-  accounts.push(account);
-  saveAccounts(accounts);
+  accountsCache.push(account);
+  await persistAccounts();
   saveSession(account);
   clearGateMsg('gateSignupMsg');
-  enterApp(account);
+  btn.disabled = false;
+  await enterApp(account);
 });
 
-document.getElementById('gateLoginBtn').addEventListener('click', ()=>{
+document.getElementById('gateLoginBtn').addEventListener('click', async ()=>{
   const email = document.getElementById('gateLoginEmail').value.trim().toLowerCase();
   const password = document.getElementById('gateLoginPassword').value;
+
+  const btn = document.getElementById('gateLoginBtn');
+  btn.disabled = true;
+  await refreshAccounts();
+
   const account = findAccountByEmail(email);
   if(!account || account.password !== obfuscate(password)){
     setGateMsg('gateLoginMsg', 'error', 'Email ou mot de passe incorrect.');
+    btn.disabled = false;
     return;
   }
   saveSession(account);
   clearGateMsg('gateLoginMsg');
-  enterApp(account);
+  btn.disabled = false;
+  await enterApp(account);
 });
 
-// Allow pressing Enter inside gate fields
 ['gateLoginEmail','gateLoginPassword'].forEach(id=>{
   document.getElementById(id).addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('gateLoginBtn').click(); });
 });
 ['gatePrenom','gateNom','gateEmail','gatePassword','gateFormation'].forEach(id=>{
   document.getElementById(id).addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('gateSignupBtn').click(); });
 });
+document.getElementById('forgotEmail').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('forgotSubmitBtn').click(); });
+document.getElementById('resetPassword').addEventListener('keydown', e=>{ if(e.key==='Enter') document.getElementById('resetSubmitBtn').click(); });
 
-/* ---------------- Auth gate: forgot / reset password ---------------- */
-function openResetPanel(){
-  document.getElementById('authTabs').style.display = 'none';
-  document.getElementById('authPanelLogin').style.display = 'none';
-  document.getElementById('authPanelSignup').style.display = 'none';
-  document.getElementById('authPanelReset').style.display = 'flex';
-  document.getElementById('resetStep1').style.display = 'block';
-  document.getElementById('resetStep2').style.display = 'none';
-  document.getElementById('resetEmail').value = '';
-  document.getElementById('resetPassword').value = '';
-  document.getElementById('resetPasswordConfirm').value = '';
-  resetTargetAccountId = null;
-  clearGateMsg('gateResetMsg');
+let pollTimer = null;
+
+async function loadAllData(){
+  const [n, e, t] = await Promise.all([
+    apiGet('news', null),
+    apiGet('events', null),
+    apiGet('threads', null)
+  ]);
+  if(n === null){ news = DEFAULT_NEWS.slice(); await apiSet('news', news); } else { news = n; }
+  if(e === null){ events = DEFAULT_EVENTS.slice(); await apiSet('events', events); } else { events = e; }
+  if(t === null){ threads = DEFAULT_THREADS.slice(); await apiSet('threads', threads); } else { threads = t; }
 }
 
-document.getElementById('forgotPasswordBtn').addEventListener('click', openResetPanel);
-document.getElementById('backToLoginBtn').addEventListener('click', ()=> showAuthTab('login'));
-
-document.getElementById('resetFindBtn').addEventListener('click', ()=>{
-  const email = document.getElementById('resetEmail').value.trim().toLowerCase();
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!emailOk){
-    setGateMsg('gateResetMsg', 'error', 'Merci de renseigner un email valide.');
-    return;
+async function pollForUpdates(){
+  try{
+    const [n, e, t] = await Promise.all([
+      apiGet('news', news),
+      apiGet('events', events),
+      apiGet('threads', threads)
+    ]);
+    news = n; events = e; threads = t;
+    renderNews();
+    renderEvents();
+    renderThreads();
+    renderBoard();
+    if(document.getElementById('view-espace').classList.contains('active')) renderEspace();
+  } catch(err){
+    console.error('poll failed', err);
   }
-  const account = findAccountByEmail(email);
-  if(!account){
-    setGateMsg('gateResetMsg', 'error', "Aucun compte n'est associé à cet email.");
-    return;
-  }
-  resetTargetAccountId = account.id;
-  clearGateMsg('gateResetMsg');
-  document.getElementById('resetStep1').style.display = 'none';
-  document.getElementById('resetStep2').style.display = 'block';
-});
+}
 
-document.getElementById('resetEmail').addEventListener('keydown', e=>{
-  if(e.key==='Enter') document.getElementById('resetFindBtn').click();
-});
-
-document.getElementById('resetConfirmBtn').addEventListener('click', ()=>{
-  if(!resetTargetAccountId) return;
-  const pw = document.getElementById('resetPassword').value;
-  const pw2 = document.getElementById('resetPasswordConfirm').value;
-
-  if(pw.length < 6){
-    setGateMsg('gateResetMsg', 'error', 'Le mot de passe doit contenir au moins 6 caractères.');
-    return;
-  }
-  if(pw !== pw2){
-    setGateMsg('gateResetMsg', 'error', 'Les deux mots de passe ne correspondent pas.');
-    return;
-  }
-
-  const accounts = loadAccounts();
-  const idx = accounts.findIndex(a=>a.id===resetTargetAccountId);
-  if(idx === -1){
-    setGateMsg('gateResetMsg', 'error', 'Une erreur est survenue, réessaie.');
-    return;
-  }
-  accounts[idx].password = obfuscate(pw);
-  saveAccounts(accounts);
-
-  setGateMsg('gateResetMsg', 'success', 'Mot de passe mis à jour ✓ Tu peux te connecter.');
-  const loggedInEmail = accounts[idx].email;
-  setTimeout(()=>{
-    showAuthTab('login');
-    document.getElementById('gateLoginEmail').value = loggedInEmail;
-    document.getElementById('gateLoginPassword').value = '';
-    document.getElementById('gateLoginPassword').focus();
-  }, 1200);
-});
-
-['resetPassword','resetPasswordConfirm'].forEach(id=>{
-  document.getElementById(id).addEventListener('keydown', e=>{
-    if(e.key==='Enter') document.getElementById('resetConfirmBtn').click();
-  });
-});
+function startPolling(){
+  if(pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(pollForUpdates, 15000);
+}
 
 async function enterApp(account){
   currentUser = publicUser(account);
   document.getElementById('authGate').style.display = 'none';
   document.getElementById('mainApp').style.display = 'block';
+  await loadAllData();
   renderAuthArea();
   updateAskModalForAuth();
   updateAskCtaVisibility();
   renderHeader();
-  // On recharge systématiquement les données partagées à chaque connexion
-  // (et pas seulement si sharedDataReady est encore false) : si quelqu'un se
-  // déconnecte puis crée un compte dans le même onglet, sans recharger la
-  // page, il ne faut surtout pas réutiliser les données déjà en mémoire —
-  // elles peuvent être périmées (ex. une annonce publiée entre-temps par
-  // l'équipe ne serait sinon pas visible pour ce nouveau compte).
-  await loadSharedData();
   renderNews();
   renderEvents();
   renderThreads();
-  renderAnnouncements();
   renderEspace();
-  renderBoard();
-  startSharedPolling();
+  startPolling();
 }
 
-// Rafraîchit les données partagées toutes les 8 secondes pour que ce qui
-// est publié dans "Espace équipe" / "Espace étudiant" apparaisse chez tout
-// le monde sans recharger la page.
-let sharedPollingTimer = null;
-function startSharedPolling(){
-  if(sharedPollingTimer) return;
-  sharedPollingTimer = setInterval(refreshSharedData, 8000);
-}
-
-/* ---------------- Ask modal ---------------- */
 const overlay = document.getElementById('askOverlay');
 document.getElementById('openAskBtn').addEventListener('click', ()=> overlay.classList.add('open'));
 document.getElementById('cancelAsk').addEventListener('click', ()=> overlay.classList.remove('open'));
 overlay.addEventListener('click', (e)=>{ if(e.target===overlay) overlay.classList.remove('open'); });
 
-document.getElementById('submitAsk').addEventListener('click', ()=>{
+document.getElementById('submitAsk').addEventListener('click', async ()=>{
   const cat = document.getElementById('askCat').value;
   const title = document.getElementById('askTitle').value.trim();
   if(!title){
@@ -2387,10 +1791,9 @@ document.getElementById('submitAsk').addEventListener('click', ()=>{
   renderFilters();
   renderThreads();
   switchView('forum');
-  persistShared();
+  await apiSet('threads', threads);
 });
 
-/* ---------------- Admin modals: news & events (équipe MBS) ---------------- */
 const newsOverlay = document.getElementById('newsOverlay');
 const eventOverlay = document.getElementById('eventOverlay');
 
@@ -2398,7 +1801,7 @@ document.getElementById('addNewsBtn').addEventListener('click', ()=> newsOverlay
 document.getElementById('cancelNews').addEventListener('click', ()=> newsOverlay.classList.remove('open'));
 newsOverlay.addEventListener('click', (e)=>{ if(e.target===newsOverlay) newsOverlay.classList.remove('open'); });
 
-document.getElementById('submitNews').addEventListener('click', ()=>{
+document.getElementById('submitNews').addEventListener('click', async ()=>{
   const cat = document.getElementById('newsCat').value.trim() || "Vie de l'école";
   const title = document.getElementById('newsTitle').value.trim();
   const date = document.getElementById('newsDate').value.trim();
@@ -2414,14 +1817,14 @@ document.getElementById('submitNews').addEventListener('click', ()=>{
   newsOverlay.classList.remove('open');
   renderNews();
   renderEspace();
-  persistShared();
+  await apiSet('news', news);
 });
 
 document.getElementById('addEventBtn').addEventListener('click', ()=> eventOverlay.classList.add('open'));
 document.getElementById('cancelEvent').addEventListener('click', ()=> eventOverlay.classList.remove('open'));
 eventOverlay.addEventListener('click', (e)=>{ if(e.target===eventOverlay) eventOverlay.classList.remove('open'); });
 
-document.getElementById('submitEvent').addEventListener('click', ()=>{
+document.getElementById('submitEvent').addEventListener('click', async ()=>{
   const title = document.getElementById('eventTitle').value.trim();
   const day = document.getElementById('eventDay').value.trim();
   const month = document.getElementById('eventMonth').value.trim().toUpperCase();
@@ -2430,67 +1833,43 @@ document.getElementById('submitEvent').addEventListener('click', ()=>{
     setGateMsg('eventMsg', 'error', 'Merci de remplir tous les champs.');
     return;
   }
-  events.push({day, month, title, loc, registrants:[]});
+  events.push({day, month, title, loc});
   ['eventTitle','eventDay','eventMonth','eventLoc'].forEach(id=> document.getElementById(id).value = '');
   clearGateMsg('eventMsg');
   eventOverlay.classList.remove('open');
   renderEvents();
   renderBoard();
   renderEspace();
-  persistShared();
+  await apiSet('events', events);
 });
 
-/* ---------------- Admin modal: annonces (équipe MBS) ---------------- */
-const announcementOverlay = document.getElementById('announcementOverlay');
-document.getElementById('cancelAnnouncement').addEventListener('click', ()=> announcementOverlay.classList.remove('open'));
-announcementOverlay.addEventListener('click', (e)=>{ if(e.target===announcementOverlay) announcementOverlay.classList.remove('open'); });
-document.getElementById('addAnnouncementBtn').addEventListener('click', ()=> announcementOverlay.classList.add('open'));
-
-document.getElementById('submitAnnouncement').addEventListener('click', ()=>{
-  const title = document.getElementById('announcementTitle').value.trim();
-  const text = document.getElementById('announcementText').value.trim();
-  const urgent = document.getElementById('announcementUrgent').checked;
-  if(!title || !text){
-    setGateMsg('announcementMsg', 'error', 'Merci de renseigner un titre et un message.');
-    return;
-  }
-  announcements.unshift({title, text, urgent, at: Date.now()});
-  document.getElementById('announcementTitle').value = '';
-  document.getElementById('announcementText').value = '';
-  document.getElementById('announcementUrgent').checked = false;
-  clearGateMsg('announcementMsg');
-  announcementOverlay.classList.remove('open');
-  renderAnnouncements();
-  renderEspace();
-  persistShared();
-});
-
-/* ---------------- Init ---------------- */
-(function init(){
-  const existing = loadSessionAccount();
-  if(existing){
-    enterApp(existing);
-  } else {
-    document.getElementById('authGate').style.display = 'flex';
-    document.getElementById('mainApp').style.display = 'none';
-  }
+(async function init(){
   renderFilters();
-  renderBoard();
+
+  const params = new URLSearchParams(window.location.search);
+  const resetToken = params.get('reset');
+
+  document.getElementById('authGate').style.display = 'flex';
+  document.getElementById('mainApp').style.display = 'none';
+
+  if(resetToken){
+    showAuthTab('reset');
+  } else {
+    const existing = await loadSessionAccount();
+    if(existing){
+      await enterApp(existing);
+    }
+  }
   setInterval(renderHeader, 30000);
 })();
 
-
-
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js")
-            .then(() => console.log("Service Worker enregistré"))
-            .catch(err => console.error("Erreur Service Worker :", err));
-    });
+/* ---------------- PWA : enregistrement du service worker ---------------- */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('/service-worker.js')
+      .catch(err => console.error('Échec d\'enregistrement du service worker', err));
+  });
 }
-
-
- 
 </script>
 
 </body>
