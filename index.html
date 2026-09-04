@@ -2476,7 +2476,18 @@ document.getElementById('submitAnnouncement').addEventListener('click', ()=>{
 })();
 
 
+
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "f356f1bd-dc48-4787-9d9f-68a58c8b46d5",
+    });
+  });
 </script>
+
+
   
 </body>
 </html>
