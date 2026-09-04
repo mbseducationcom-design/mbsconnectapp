@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>MBS Connect</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Zilla+Slab:wght@400;600;700&display=swap');
 
+
+
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "f356f1bd-dc48-4787-9d9f-68a58c8b46d5",
+    });
+  });
+</script>
+
+
+  
 :root{
   --ink:#28313F;
   --ink-800:#1B222C;
@@ -2477,14 +2490,6 @@ document.getElementById('submitAnnouncement').addEventListener('click', ()=>{
 
 
 
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "f356f1bd-dc48-4787-9d9f-68a58c8b46d5",
-    });
-  });
 </script>
 
 
